@@ -12,3 +12,36 @@
     margin-top: 50px;
     color: #2A414F;
 }
+.order-button{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 26px;
+}
+.clear-button{
+    background: #FF3030;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.clear-button:hover{
+    background: #ff0000;
+    cursor: pointer;
+}
+.review-button{
+    background: #FF9900;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+}
+.review-button:hover{
+    background: #d98200;
+}
