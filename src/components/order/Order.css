@@ -1,0 +1,14 @@
+.cart-title{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 38px;
+    color: #1C2B35;
+}
+.cart-info{
+    margin-left: 33px;
+    margin-top: 50px;
+    color: #2A414F;
+}

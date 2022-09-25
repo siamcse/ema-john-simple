@@ -1,15 +1,16 @@
 .shop-container{
     display: grid;
     grid-template-columns: 4fr 1fr;
-    
-    
 }
 .products-container{
-
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 50px;
     margin: 50px 100px;
+}
+.cart-container{
+    background: rgba(255, 153, 0, 0.3);
+    height: 100vh;
 }
 @media screen and (max-width:1100px) {
     .products-container{
