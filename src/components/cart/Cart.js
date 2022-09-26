@@ -1,35 +1,32 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import './Order.css'
+import './Cart.css'
 
-const Order = ({cart}) => {
-    let totalPrice = 0;
+const Cart = ({cart}) => {
+    // console.log(cart);
+    let total = 0;
+    let shipping = 0;
+    let quantity = 0;
+
     cart.forEach(product => {
-        totalPrice += product.price;
+        quantity += product.quantity;
+        total += product.price * product.quantity;
+        shipping += product.shipping;
     });
     
-    let shippingCharge;
-    if(totalPrice>1000){
-        shippingCharge = 10;
-    }
-    else if(totalPrice>500){
-        shippingCharge = 5;
-    }
-    else{
-        shippingCharge = 0;
-    }
-    const tax = totalPrice * 15 / 100;
+    
+    const tax = parseFloat((total * 0.1).toFixed(2));
 
-    const grandTotal = totalPrice + shippingCharge + tax;
+    const grandTotal = total + shipping + tax;
 
     return (
-        <div>
+        <div className='cart'>
             <h1 className='cart-title'>Order Summary</h1>
             <div className='cart-info'>
-                <p>Selected Items: {cart.length}</p>
-                <p>Total Price: ${totalPrice}</p>
-                <p>Total Shipping Charge: ${shippingCharge}</p>
+                <p>Selected Items: {quantity}</p>
+                <p>Total Price: ${total}</p>
+                <p>Total Shipping Charge: ${shipping}</p>
                 <p>Tax: ${tax}</p>
                 <h3>Grand Total: ${grandTotal}</h3> 
             </div>
@@ -47,4 +44,4 @@ const Order = ({cart}) => {
     );
 };
 
-export default Order;
+export default Cart;
