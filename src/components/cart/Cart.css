@@ -42,10 +42,16 @@
     border-radius: 4px;
     color: white;
     display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+.review-button a{
+    text-decoration: none;
+    color: white;
+    padding: 8px;
 }
 .review-button:hover{
-    background: #d98200;
+    background: #e08f15;
 }
