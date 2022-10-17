@@ -1,0 +1,81 @@
+.form-container {
+  width: 500px;
+  height: 600px;
+  margin: 20px auto;
+  border: 1px solid #95a0a7;
+  border-radius: 8px;
+}
+
+.form-title {
+  font-style: normal;
+  text-align: center;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 42px;
+  letter-spacing: 0.0025em;
+  color: #2a414f;
+}
+
+.form-control {
+  width: 415px;
+  height: 84px;
+  margin: 20px 43px;
+}
+
+.form-control label {
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: 0.0015em;
+  color: #2a414f;
+  padding: 7px;
+}
+
+.form-control input {
+  width: 415px;
+  height: 55px;
+  border: 1px solid #95a0a7;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+
+.btn-login {
+  width: 425px;
+  height: 55px;
+  background: rgba(255, 153, 0, 0.3);
+  border: none;
+  border-radius: 5px;
+  margin: 44px 43px 9px;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: 0.0015em;
+
+  color: #0E161A;
+}
+
+.btn-login:hover {
+  background: rgba(255, 153, 0, 0.6);
+}
+
+.new-account {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0.0025em;
+  color: #2A414F;
+  text-align: center;
+}
+
+.new-account a {
+  text-decoration: none;
+  color: #FF9900;
+}
+
+.text-error {
+  margin-left: 43px;
+  color: red;
+}

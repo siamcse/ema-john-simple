@@ -1,4 +1,4 @@
-.header{
+.header {
     background-color: #1C2B35;
     height: 80px;
     display: flex;
@@ -7,12 +7,31 @@
     padding-left: 140px;
     padding-right: 140px;
 }
-.header a{
+
+.header-link{
+    display: flex;
+    align-items: center;
+}
+
+.header a {
     color: #FFFFFF;
     text-decoration: none;
     padding: 10px;
     font-size: 17px;
 }
-.header a:hover{
+
+.header a:hover {
+    color: orange;
+}
+
+.btn-logout {
+    color: #FFFFFF;
+    background-color: #1C2B35;
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+.btn-logout:hover{
     color: orange;
 }
