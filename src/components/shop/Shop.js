@@ -11,50 +11,50 @@ const Shop = () => {
     const products = useLoaderData();
     const [cart, setCart] = useState([]);
 
-    const clearCart = () =>{
+    const clearCart = () => {
         setCart([]);
         deleteShoppingCart();
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const storedCart = getStoredCart();
         const savedCart = [];
-        for(const id in storedCart){
-            const addedProduct = products.find(product => id===product.id);
-            if(addedProduct){
+        for (const id in storedCart) {
+            const addedProduct = products.find(product => id === product._id);
+            if (addedProduct) {
                 const quantity = storedCart[id];
                 addedProduct.quantity = quantity;
                 savedCart.push(addedProduct);
             }
         }
         setCart(savedCart);
-    },[products]);
+    }, [products]);
 
-    const handleAddToCart = (selectedProduct) =>{
+    const handleAddToCart = (selectedProduct) => {
         let newCart = [];
-        const exists = cart.find(product => product.id === selectedProduct.id);
-        if(!exists){
+        const exists = cart.find(product => product._id === selectedProduct._id);
+        if (!exists) {
             selectedProduct.quantity = 1;
-            newCart = [...cart,selectedProduct];
+            newCart = [...cart, selectedProduct];
         }
-        else{
-            const rest = cart.filter(product => product.id !== selectedProduct.id);
+        else {
+            const rest = cart.filter(product => product._id !== selectedProduct._id);
             exists.quantity += 1;
-            newCart = [...rest,exists];
+            newCart = [...rest, exists];
         }
         setCart(newCart);
-        addToDb(selectedProduct.id);
+        addToDb(selectedProduct._id);
     };
     return (
         <div className='shop-container'>
             <div className="products-container">
                 {
-                    products.map(product => <Product 
-                        key={product.id} 
+                    products.map(product => <Product
+                        key={product._id}
                         product={product}
                         handleAddToCart={handleAddToCart}>
-                        
-                        </Product>)
+
+                    </Product>)
                 }
             </div>
             <div className="cart-container">
