@@ -8,8 +8,25 @@ import Product from '../product/Product';
 import './Shop.css';
 
 const Shop = () => {
-    const products = useLoaderData();
+    // const { products, count } = useLoaderData();
+    const [products, setProducts] = useState([]);
+    const [count, setCount] = useState(0);
     const [cart, setCart] = useState([]);
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(10);
+
+    const pages = Math.ceil(count / size);
+    console.log(Array(pages).length)
+
+    useEffect(() => {
+        const url = `http://localhost:5000/products?page=${page}&size=${size}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data.products);
+                setCount(data.count);
+            })
+    }, [page, size])
 
     const clearCart = () => {
         setCart([]);
@@ -19,16 +36,29 @@ const Shop = () => {
     useEffect(() => {
         const storedCart = getStoredCart();
         const savedCart = [];
-        for (const id in storedCart) {
-            const addedProduct = products.find(product => id === product._id);
-            if (addedProduct) {
-                const quantity = storedCart[id];
-                addedProduct.quantity = quantity;
-                savedCart.push(addedProduct);
-            }
-        }
+        const ids = Object.keys(storedCart);
+
+        fetch("http://localhost:5000/productByIds", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(ids)
+        })
+            .then(res => res.json())
+            .then(data => {
+                for (const id in storedCart) {
+                    const addedProduct = data.find(product => id === product._id);
+                    if (addedProduct) {
+                        const quantity = storedCart[id];
+                        addedProduct.quantity = quantity;
+                        savedCart.push(addedProduct);
+                    }
+                }
+            })
+
         setCart(savedCart);
-    }, [products]);
+    }, []);
 
     const handleAddToCart = (selectedProduct) => {
         let newCart = [];
@@ -61,6 +91,44 @@ const Shop = () => {
                 <Cart cart={cart} clearCart={clearCart}>
                     <Link to='/orders'>Review Order</Link>
                 </Cart>
+            </div>
+            {/* paginations */}
+            <div className='pagination'>
+                <p>Currently selected page: {page + 1} & size: {size}</p>
+                <button onClick={() => {
+                    if (page > 0) {
+                        setPage(page - 1)
+                    }
+                }}>
+                    {"<"}
+                </button>
+                {
+                    [...Array(pages).keys()].map(number =>
+                        <>
+                            <button
+                                key={number}
+                                onClick={() => setPage(number)}
+                                className={page === number ? 'selected' : 'undefined'}
+                            >
+                                {number + 1}
+                            </button>
+                        </>
+                    )
+                }
+                <button onClick={() => {
+                    if (Array(pages).length - 1 > page) {
+                        setPage(page + 1)
+                    }
+                }}>
+                    {">"}
+                </button>
+
+                <select defaultValue={10} onChange={(event) => { setSize(event.target.value); setPage(0) }}>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
             </div>
         </div>
     );
